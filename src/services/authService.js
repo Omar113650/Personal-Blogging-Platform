@@ -2,8 +2,7 @@ import { User } from "../models/User.js";
 import { generateTokens, setRefreshCookie } from "../utils/Token.js";
 import jwt from "jsonwebtoken";
 
-// @desc   register
-// @route  POST /api/V1/register
+// register
 export const registerService = async ({ Name, Email, Password }) => {
   const existingUser = await User.findOne({ Email });
   if (existingUser) {
@@ -21,8 +20,8 @@ export const registerService = async ({ Name, Email, Password }) => {
     refreshToken,
   };
 };
-// @desc   Login
-// @route  POST /api/V1/login
+
+//  Login
 export const loginService = async ({ Email, Password }) => {
   const user = await User.findOne({ Email });
   if (!user) {
@@ -47,8 +46,7 @@ export const loginService = async ({ Email, Password }) => {
   };
 };
 
-// @desc   refresh-token
-// @route  POST /api/V1/refresh
+//    refresh-token
 export const refreshTokenService = async (refreshToken) => {
   if (!refreshToken) {
     const error = new Error("No refresh token provided");
@@ -68,8 +66,8 @@ export const refreshTokenService = async (refreshToken) => {
   const { accessToken } = generateTokens(user);
   return { accessToken };
 };
-// @desc  get-all-user
-// @route  GET /api/V1/users
+
+//   get-all-user
 export const getAllUsersService = async () => {
   const users = await User.find().select("-Password");
   return users;
