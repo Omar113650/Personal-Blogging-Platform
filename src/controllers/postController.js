@@ -5,11 +5,11 @@ import {
   createPostService,
   updatePostService,
   deletePostService,
-} from "../services/post.service.js";
+} from "../services/postService.js";
 import {
   CreatePostValidation,
   UpdatePostValidation,
-} from "../validations/post.validation.js";
+} from "../validation/PostsValidation.js";
 
 // @desc   Get all posts
 // @route  GET /api/posts

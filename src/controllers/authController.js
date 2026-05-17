@@ -25,6 +25,7 @@ export const register = asyncHandler(async (req, res) => {
     message: "Registration successful",
     user,
     accessToken,
+    refreshToken
   });
 });
 
@@ -44,6 +45,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     message: "Login successful",
     user,
     accessToken,
+    refreshToken
   });
 });
 
