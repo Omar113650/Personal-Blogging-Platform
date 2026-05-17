@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.j",
-    "dev": "nodemon src/server.j"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "author": "omar_elhelaly",
   "license": "ISC",
