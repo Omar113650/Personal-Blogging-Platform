@@ -25,7 +25,7 @@ export const getAllPostsService = async ({ page = 1, limit = 10 }) => {
   };
 };
 
-//  Get  Post By Id
+//  Get Post By Id
 export const getPostByIdService = async (id) => {
   const post = await Post.findById(id).populate("AuthorID", "Name Email");
   if (!post) {
@@ -69,6 +69,12 @@ export const updatePostService = async ({ id, Title, Content, file }) => {
     throw error;
   }
 
+  if (post.AuthorID.toString() !== userId) {
+    const error = new Error("Forbidden: not your post");
+    error.statusCode = 403;
+    throw error;
+  }
+
   if (file) {
     if (post.Image?.publicId) {
       await cloudinaryRemoveImage(post.Image.publicId);
@@ -95,6 +101,12 @@ export const deletePostService = async ({ id }) => {
   if (!post) {
     const error = new Error("Post not found");
     error.statusCode = 404;
+    throw error;
+  }
+
+  if (post.AuthorID.toString() !== userId) {
+    const error = new Error("Forbidden: not your post");
+    error.statusCode = 403;
     throw error;
   }
 

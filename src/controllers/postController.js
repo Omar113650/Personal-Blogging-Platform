@@ -71,6 +71,7 @@ export const updatePost = asyncHandler(async (req, res) => {
     Title,
     Content,
     file: req.file,
+     userId: req.user.id,
   });
 
   res.status(200).json({
@@ -85,10 +86,12 @@ export const updatePost = asyncHandler(async (req, res) => {
 export const deletePost = asyncHandler(async (req, res) => {
   const { deletedId } = await deletePostService({
     id: req.params.id,
+     userId: req.user.id,
   });
 
   res.status(200).json({
     message: "Post deleted successfully",
     deletedId,
+
   });
 });

@@ -1,6 +1,5 @@
 import Joi from "joi";
 
-
 const messages = (fieldName) => ({
   "string.empty": `${fieldName} is required`,
   "string.min": `${fieldName} is too short`,

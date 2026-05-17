@@ -49,7 +49,8 @@ export const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
-//  Logout
+// @desc   Logout
+// @route  POST /api/V1/Logout
 export const logoutUser = asyncHandler(async (req, res) => {
   const cookieOptions = {
     httpOnly: true,
@@ -61,6 +62,7 @@ export const logoutUser = asyncHandler(async (req, res) => {
 
   res.status(200).json({ message: "Logged out successfully" });
 });
+
 // @desc   refresh-token
 // @route  POST /api/V1/refresh
 export const refreshToken = asyncHandler(async (req, res) => {

@@ -7,6 +7,7 @@ import morgan from "morgan";
 import statusMonitor from "express-status-monitor";
 import { notfound, errorHandler } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
+import rateLimit from "express-rate-limit";
 const app = express();
 
 app.use(helmet());
@@ -25,20 +26,25 @@ app.use(
   }),
 );
 
-app.use(morgan());
+app.use(morgan("dev"));
 app.use(cookieParser());
 
 app.use(statusMonitor());
 
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: "Too many requests from this IP, please try again later.",
+  }),
+);
+
 app.use(express.json());
+
 import authRoutes from "./routes/auth.route.js";
 import postRoutes from "./routes/posts.route.js";
 
-app.use((req, res, next) => {
-  if (req.body) mongoSanitize.sanitize(req.body);
-  if (req.params) mongoSanitize.sanitize(req.params);
-  next();
-});
+app.use(mongoSanitize());
 
 app.get("/", (req, res) => res.send("Hello in Personal Blogging Platform "));
 

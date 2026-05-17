@@ -29,7 +29,6 @@ export const loginService = async ({ Email, Password }) => {
     error.statusCode = 401;
     throw error;
   }
-
   const isMatch = await user.comparePassword(Password);
   if (!isMatch) {
     const error = new Error("Invalid email or password");
