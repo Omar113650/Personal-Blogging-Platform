@@ -7,7 +7,7 @@ import {
   deletePost,
 } from "../controllers/postController.js";
 import upload from "../utils/multer.js";
-import { ValidatedID } from "../middlewares/validateID.js";
+import { ValidatedID } from "../middlewares/validateId.js";
 import { validate } from "../middlewares/Validate.js";
 import { VerifyToken } from "../middlewares/VerifyToken.js";
 import {
